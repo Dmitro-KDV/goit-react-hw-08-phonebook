@@ -11,6 +11,7 @@ const LoginPage = () => {
   console.log('1 ===>'+isAuth)
   useEffect(() => {
     console.log('2 ===> '+isAuth)
+    
     isAuth && navigate('/contacts')
   }, [isAuth, navigate])
 
