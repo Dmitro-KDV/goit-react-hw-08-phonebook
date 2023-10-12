@@ -1,40 +1,25 @@
-import { FormaPhonebook } from 'components/Phonebook/FormaPhonebook';
-import { Contacts } from 'components/Phonebook/Contacts';
-import { Filter } from 'components/Phonebook/Filter';
-import { Container, Rotating } from './Phonebook/Phonebook.stiled';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from './redux/operation';
-import { useEffect } from 'react';
-import { RotatingLines } from  'react-loader-spinner'
-
+import { Routes, Route } from "react-router-dom";
+import { lazy } from "react";
+// import Home from "./pages/Home";
+import Layout from "./Layout/Layout";
+// import {LoginPage} from "./Page/LoginPage";
+// import {RegisterPage} from "./Page/RegisterPage";
+const LoginPage = lazy(() => import('./Page/LoginPage'))
+const RegisterPage = lazy(() => import('./Page/RegisterPage'))
+const Tasks = lazy(() => import('./Page/Tasks'))
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const { contacts} = useSelector(state => state.contacts);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
-
   return (
-    <Container>
-      <h2>Phonebook</h2>
-      <FormaPhonebook />
-      <h2>Contacts</h2>
-      <Filter />
-      {contacts.isLoading && !contacts.error && 
-        <Rotating className="RotatingLines">
-          <RotatingLines
-            strokeColor="green"
-            strokeWidth="5"
-            animationDuration="0.75"
-            width="96"
-            visible={true}
-          />
-        </Rotating>
-      }
-      <Contacts />
-    </Container>
+    <div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          {/* <Route index element={<Home />} /> */}
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="contacts" element={<Tasks />} />
+          <Route path="*" element={<LoginPage />} />
+        </Route>
+    </Routes>
+    </div>
   );
 };

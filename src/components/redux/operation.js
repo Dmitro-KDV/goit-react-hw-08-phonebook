@@ -4,7 +4,6 @@ import { addContacts, deleteContacts, getContacts } from "components/services";
 export const fetchContacts = createAsyncThunk('contacts/fetchAll', async() => {
     const response = await getContacts();
     return response.data;
-    // return await getContacts();
 });
 
 export const addContact = createAsyncThunk("contacts/addContact", async (text) => {
