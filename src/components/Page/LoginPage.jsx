@@ -1,4 +1,4 @@
-import { getProfileThunk, loginThunk } from "components/redux/auth/operation";
+import { loginThunk } from "components/redux/auth/operation";
 import { selectToken } from "components/redux/auth/selector";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
