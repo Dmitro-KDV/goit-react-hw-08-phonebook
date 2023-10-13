@@ -1,18 +1,21 @@
-import { loginThunk } from "components/redux/auth/operation";
+import { getProfileThunk, loginThunk } from "components/redux/auth/operation";
 import { selectToken } from "components/redux/auth/selector";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Notiflix from 'notiflix';
 
 const LoginPage = () => {
   const navigate = useNavigate()
   const isAuth = useSelector(selectToken)
   const dispatch = useDispatch();
-  console.log('1 ===>'+isAuth)
+  // console.log('1 ===> '+isAuth)
   useEffect(() => {
-    console.log('2 ===> '+isAuth)
-    
-    isAuth && navigate('/contacts')
+    if (isAuth) {
+      navigate('/contacts')
+      // dispatch(getProfileThunk(isAuth))
+      Notiflix.Notify.success('Welcome Contacts book');
+    }
   }, [isAuth, navigate])
 
   const handleSubmit = evt => {
@@ -22,10 +25,7 @@ const LoginPage = () => {
       email: email.value,
       password: password.value,
     }
-    dispatch(
-      loginThunk(newUser)
-      // Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-    );
+    dispatch(loginThunk(newUser));
   };
 
     return (

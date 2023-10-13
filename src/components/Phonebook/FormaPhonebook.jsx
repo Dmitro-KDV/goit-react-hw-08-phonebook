@@ -1,6 +1,6 @@
 import {Form, Label} from './Phonebook.stiled';
-import { addContact } from 'components/redux/operation';
-import { contactsSelector } from 'components/redux/selector';
+import { addContact } from 'components/redux/tasks/operation';
+import { contactsSelector } from 'components/redux/tasks/selector';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const FormaPhonebook = () => {

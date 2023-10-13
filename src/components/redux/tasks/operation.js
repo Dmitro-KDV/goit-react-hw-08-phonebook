@@ -1,9 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { addContacts, deleteContacts, getContacts } from "components/services";
 
-export const fetchContacts = createAsyncThunk('contacts/fetchAll', async() => {
-    const response = await getContacts();
-    return response.data;
+export const fetchContacts = createAsyncThunk('contacts/fetchAll', async(token) => {
+    const response = await getContacts(token);
+    // console.log('2 ===> '+response)
+    return response;
 });
 
 export const addContact = createAsyncThunk("contacts/addContact", async (text) => {

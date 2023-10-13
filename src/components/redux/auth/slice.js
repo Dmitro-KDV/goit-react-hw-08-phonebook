@@ -26,12 +26,14 @@ const handleFulfilled = (state, { payload }) => {
     state.isLoading = false;
     state.error = null;
     state.token = payload.token;
-    console.log('3 ===> '+payload.token)
+    state.profile = payload;
+    // console.log(payload)
 };
 const handleFulfilledProfile = (state, { payload }) => {
     state.isLoading = false;
     state.error = null;
     state.profile = payload;
+    // console.log(payload)
 };
 const handleRejected = (state, { payload }) => {
     state.isLoading = false;
@@ -41,6 +43,12 @@ const handleRejected = (state, { payload }) => {
 const authSlice = createSlice({
     name: 'auth',
     initialState,
+    reducers: {
+        logOut(state){
+            state.profile = null
+            state.token = ''
+        }
+    },
     extraReducers: (builder) => {
         const {PENDING, REJECTED} = STATUS
         builder
@@ -52,3 +60,4 @@ const authSlice = createSlice({
 })
 
 export const authReduser = authSlice.reducer
+export const {logOut} = authSlice.actions
