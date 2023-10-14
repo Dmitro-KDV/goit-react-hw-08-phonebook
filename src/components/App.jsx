@@ -1,9 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 // import Home from "./pages/Home";
 import Layout from "./Layout/Layout";
-import { useSelector } from "react-redux";
-import { selectToken } from "./redux/auth/selector";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsRefreshing, selectToken } from "./redux/auth/selector";
+import { refreshUserThunk } from "./redux/auth/operation";
 // import {LoginPage} from "./Page/LoginPage";
 // import {RegisterPage} from "./Page/RegisterPage";
 const Home = lazy(() => import('./Page/Home'));
@@ -12,9 +13,17 @@ const RegisterPage = lazy(() => import('./Page/RegisterPage'))
 const Tasks = lazy(() => import('./Page/Tasks'))
 
 export const App = () => {
+  const dispatch = useDispatch();
   const isAuth = useSelector(selectToken)
-  return (
-    <div>
+  const isRefreshing = useSelector(selectIsRefreshing)
+  
+  useEffect(() => {
+    dispatch(refreshUserThunk(isAuth));
+  }, [dispatch, isAuth]);
+
+  return isRefreshing ? (
+      <b>Refreshing user...</b>
+    ) : (
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -23,7 +32,6 @@ export const App = () => {
           {isAuth && <Route path="contacts" element={<Tasks />} />}
           <Route path="*" element={<Home />} />
         </Route>
-    </Routes>
-    </div>
+      </Routes>
   );
 };

@@ -21,11 +21,11 @@ function Layout() {
             <StyledLink to="/register">Registration</StyledLink>
           </>
         )}
-        {/* {!profile && <StyledLink to="/login">Login</StyledLink>}
-        {!profile && <StyledLink to="/register">Registration</StyledLink>} */}
-        {isAuth && <UserMenu />}
-        {/* {profile && <Contacts />} */}
-        {/* {profile && <StyledLink to="/contacts">Contacts</StyledLink>} */}
+        {isAuth && (
+          <>
+          <StyledLink to="/contacts">Contacts</StyledLink>
+          <UserMenu />
+          </>)}
       </Nav>
       <Suspense >
         <Outlet />

@@ -1,11 +1,12 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getProfileThunk, loginThunk } from './operation';
+import { getProfileThunk, loginThunk, refreshUserThunk } from './operation';
 
 const initialState = {
     token: '',
     isLoading: false,
     error: '',  
     profile: null,  
+    isRefreshing: false,
 }
 const customArr = [loginThunk, getProfileThunk]
 
@@ -35,10 +36,24 @@ const handleFulfilledProfile = (state, { payload }) => {
     state.profile = payload;
     // console.log(payload)
 };
+const handlePendingRefresh = state => {
+    state.isRefreshing = true;
+};
+const handleFulfilledRefresh = (state, { payload }) => {
+    state.isLoading = true;
+    state.error = null;
+    state.profile = payload;
+    state.isRefreshing = false;
+    // console.log(payload)
+};
+const handleRejectedRefresh = (state, { payload }) => {
+    state.isRefreshing = false;
+    state.error = payload;
+};
 const handleRejected = (state, { payload }) => {
     state.isLoading = false;
     state.error = payload;
-  };
+};
 
 const authSlice = createSlice({
     name: 'auth',
@@ -54,6 +69,9 @@ const authSlice = createSlice({
         builder
             .addCase(loginThunk.fulfilled, handleFulfilled)
             .addCase(getProfileThunk.fulfilled, handleFulfilledProfile)
+            .addCase(refreshUserThunk.fulfilled, handleFulfilledRefresh)
+            .addCase(refreshUserThunk.pending, handlePendingRefresh)
+            .addCase(refreshUserThunk.rejected, handleRejectedRefresh)
             .addMatcher(isAnyOf(...fn(PENDING)), handlePending)
             .addMatcher(isAnyOf(...fn(REJECTED)), handleRejected)
     },
