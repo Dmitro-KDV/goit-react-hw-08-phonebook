@@ -3,6 +3,7 @@ import { logOut } from "components/redux/auth/slice";
 import { dellToken } from "components/services";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { User, UserMenuButton } from "components/stiled";
 
 export const UserMenu = () => {
     const dispatch = useDispatch();
@@ -16,11 +17,11 @@ export const UserMenu = () => {
     }
   
     return (
-      <div>
+      <User>
         <p>Welcome, {profile.name}</p>
-        <button type="button" onClick={handelLogOut}>
+        <UserMenuButton type="button" onClick={handelLogOut}>
           Logout
-        </button>
-      </div>
+        </UserMenuButton>
+      </User>
     );
   };

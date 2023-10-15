@@ -23,6 +23,7 @@ const UserMenu = () => {
 
   return (
     <Container>
+      <div>
       <h2>Phonebook</h2>
       <FormaPhonebook />
       <h2>Contacts</h2>
@@ -39,6 +40,7 @@ const UserMenu = () => {
         </Rotating>
       }
       <Contacts />
+      </div>
     </Container>
   );
 };

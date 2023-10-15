@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 // import { RotatingLines } from  'react-loader-spinner'
 import { Outlet } from "react-router-dom";
-import {StyledLink, Nav} from '../stiled';
+import {StyledLink, Nav, Container, MenuContacts} from '../stiled';
 import { useSelector } from 'react-redux';
 import { UserMenu } from 'components/Phonebook/UserMenu';
 import { selectToken } from 'components/redux/auth/selector';
@@ -12,25 +12,27 @@ function Layout() {
   const isAuth = useSelector(selectToken)
 
   return (
-    <div>
+    <Container>
       <Nav>
-        <StyledLink to="/">Home</StyledLink>
+        <MenuContacts>
+          <StyledLink to="/">Home</StyledLink>
+          {isAuth && <StyledLink to="/contacts">Contacts</StyledLink>}
+        </MenuContacts>
         {!isAuth && (
-          <>
+          <div>
             <StyledLink to="/login">Login</StyledLink>
             <StyledLink to="/register">Registration</StyledLink>
-          </>
+          </div>
         )}
         {isAuth && (
           <>
-          <StyledLink to="/contacts">Contacts</StyledLink>
-          <UserMenu />
+            <UserMenu />
           </>)}
       </Nav>
       <Suspense >
         <Outlet />
       </Suspense>
-    </div>
+    </Container>
   )
 }
 

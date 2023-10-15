@@ -1,4 +1,5 @@
 import { singUp } from "components/services";
+import { Form, FormButton, FormInput, FormLabel, LoginForm } from "components/stiled";
 import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
@@ -24,44 +25,35 @@ const RegisterPage = () => {
     };
   
     return (
-      <div>
-        <form onSubmit={handleSubmit}>
-        <label>
+      <LoginForm>
+        <Form onSubmit={handleSubmit}>
+        <FormLabel>
             Login
-            <input
+            <FormInput
               type="text"
               name="name"
-              // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              // required
               id='exampleInputName'
             />
-          </label>
-          <label>
+          </FormLabel>
+          <FormLabel>
             E-mail
-            <input
+            <FormInput
               type="email"
               name="email"
-              // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              // required
               id='exampleInputEmail'
             />
-          </label>
-          <label>
+          </FormLabel>
+          <FormLabel>
             Password
-            <input
+            <FormInput
               type="text"
               name="password"
-              // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              // required
               id='exampleInputPassword'
             />
-          </label>
-          <button type="submit">Registration</button>
-        </form>
-      </div>
+          </FormLabel>
+          <FormButton type="submit">Registration</FormButton>
+        </Form>
+      </LoginForm>
     );
   };
   

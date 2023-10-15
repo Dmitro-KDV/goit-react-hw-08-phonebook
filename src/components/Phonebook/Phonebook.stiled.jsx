@@ -24,8 +24,10 @@ export const ContactItem = styled.ul`
    margin: 8px 0;
 `;
 
-export const Container = styled.ul`
-   margin: 0 auto;
+export const Container = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const Rotating = styled.div`

@@ -1,7 +1,9 @@
+import { Main, Title } from "components/stiled";
+
 export default function Home() {
   return (
-    <div>
-      <h1>Welcome Contacts book</h1>
-    </div>
+    <Main>
+      <Title>Welcome Contacts book</Title>
+    </Main>
   );
 };
