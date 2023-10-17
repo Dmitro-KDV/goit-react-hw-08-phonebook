@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const Form = styled.form`
+export const Form = styled.div`
    width: 400px;
-   border: 1px solid #2a2a2a;
+   border: 3px solid #070404;
    padding: 8px;
    border-radius: 5px;
 `;
@@ -12,12 +12,20 @@ export const Label = styled.label`
   flex-direction: column;
   margin-bottom: 8px;
   width: 150px;
+  font-weight: 500;
+`;
+export const Input = styled.input`
+  margin-top: 10px;
+  width: 390px;
 `;
 
 export const ContactList = styled.li`
    display: flex;
    justify-content: space-between;
    width: 350px;
+   font-weight: 500;
+   border-bottom: 1px solid #0c1113;
+   color: white;
 `;
 
 export const ContactItem = styled.ul`

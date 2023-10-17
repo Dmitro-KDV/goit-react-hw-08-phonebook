@@ -49,15 +49,9 @@ export const contactsSlice = createSlice({
   (builder) => {
     const {PENDING, FULFILLED, REJECTED} = STATUS
     builder
-        // .addCase(fetchContacts.pending, handlePending)
         .addCase(fetchContacts.fulfilled, handleFulfilledGet)
-        // .addCase(fetchContacts.rejected, handleRejected)
-        // .addCase(addContact.pending, handlePending)
         .addCase(addContact.fulfilled, handleFulfilledAdd)
-        // .addCase(addContact.rejected, handleRejected)
-        // .addCase(deleteContact.pending, handlePending)
         .addCase(deleteContact.fulfilled, handleFulfilledDelete)
-        // .addCase(deleteContact.rejected, handleRejected)
         .addMatcher(isAnyOf(...fn(PENDING)), handlePending)
         .addMatcher(isAnyOf(...fn(REJECTED)), handleRejected)
         .addMatcher(isAnyOf(...fn(FULFILLED)), handleFulfilled)

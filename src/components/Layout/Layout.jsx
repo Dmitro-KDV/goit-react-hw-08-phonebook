@@ -1,15 +1,22 @@
 import React, { Suspense } from 'react'
-// import { RotatingLines } from  'react-loader-spinner'
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import {StyledLink, Nav, Container, MenuContacts} from '../stiled';
 import { useSelector } from 'react-redux';
 import { UserMenu } from 'components/Phonebook/UserMenu';
 import { selectToken } from 'components/redux/auth/selector';
-// import { Contacts } from 'components/Phonebook/Contacts';
+import { Button, Stack } from '@mui/material';
 
 
 function Layout() {
   const isAuth = useSelector(selectToken)
+  const navigate = useNavigate()
+
+  const handelLogIn = () => {
+    navigate("/login")
+  }
+  const handelLogRegistration = () => {
+    navigate("/register")
+  }
 
   return (
     <Container>
@@ -19,10 +26,12 @@ function Layout() {
           {isAuth && <StyledLink to="/contacts">Contacts</StyledLink>}
         </MenuContacts>
         {!isAuth && (
-          <div>
-            <StyledLink to="/login">Login</StyledLink>
-            <StyledLink to="/register">Registration</StyledLink>
-          </div>
+          <Stack spacing={2} direction="row">
+            <Button variant="contained" onClick={handelLogIn}>Login</Button>
+            <Button variant="contained" onClick={handelLogRegistration}>Registration</Button>
+            {/* <StyledLink to="/login">Login</StyledLink>
+            <StyledLink to="/register">Registration</StyledLink> */}
+          </Stack>
         )}
         {isAuth && (
           <>

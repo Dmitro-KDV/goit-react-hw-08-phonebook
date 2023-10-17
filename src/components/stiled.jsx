@@ -1,12 +1,17 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import background from "./../img/contacts.jpg";
 
 export const Container = styled.div`
-    background-image: url(./img/contacts.jpg);
+    background-image: linear-gradient(
+        rgba(46, 47, 66, 0.9),
+        rgba(46, 47, 66, 0.9)),
+        url(${background});
+    object-fit: cover;
 `;
 
 export const StyledLink = styled(NavLink)`
-  color: black;
+  color: white;
   margin-left: 20px;
   text-decoration: none;
   font-weight: 700;
@@ -21,6 +26,7 @@ export const Nav = styled.nav`
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid #2a363b;
+  color: white;
 `;
 
 export const Inform = styled.li`
@@ -56,13 +62,14 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     padding: 30px;
-    border: 1px solid #2a363b;
+    border: 3px solid #080b0c;
     border-radius: 20px;
 `;
 export const FormLabel = styled.label`
     display: flex;
     justify-content: space-between;
     padding-bottom: 20px;
+    font-weight: 500;
     font-size: 20px;
     gap: 10px;
 `;

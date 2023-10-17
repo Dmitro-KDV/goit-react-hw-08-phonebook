@@ -12,11 +12,8 @@ import { RotatingLines } from  'react-loader-spinner'
 const UserMenu = () => {
   const dispatch = useDispatch();
   const { contacts} = useSelector(state => state.contacts);
-  // const isAuth = useSelector(selectToken)
-  // const {profile} = useSelector(state => state.auth)
-// console.log('1 ===> '+isAuth)
+  
   useEffect(() => {
-    // console.log('2 ===> '+isAuth)
     dispatch(fetchContacts());
   }, [dispatch]);
 

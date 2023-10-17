@@ -28,13 +28,11 @@ const handleFulfilled = (state, { payload }) => {
     state.error = null;
     state.token = payload.token;
     state.profile = payload;
-    // console.log(payload)
 };
 const handleFulfilledProfile = (state, { payload }) => {
     state.isLoading = false;
     state.error = null;
     state.profile = payload;
-    // console.log(payload)
 };
 const handlePendingRefresh = state => {
     state.isRefreshing = true;
@@ -44,7 +42,6 @@ const handleFulfilledRefresh = (state, { payload }) => {
     state.error = null;
     state.profile = payload;
     state.isRefreshing = false;
-    // console.log(payload)
 };
 const handleRejectedRefresh = (state, { payload }) => {
     state.isRefreshing = false;

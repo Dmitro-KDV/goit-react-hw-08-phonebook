@@ -11,7 +11,8 @@ export const dellToken = () => {
 }
 
 export const singUp = async (body) => {
-    return await axios.post(`/users/signup`, body); 
+  const {data} = await axios.post(`/users/signup`, body); 
+  return data; 
 }
 
 export async function login(body) {

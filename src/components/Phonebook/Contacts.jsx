@@ -4,8 +4,6 @@ import { deleteContact } from 'components/redux/tasks/operation';
 import { filterSelector } from 'components/redux/tasks/selector';
 
 export const Contacts = () => {
-    // const { items} = useSelector(state => state.contacts.contacts);
-    // const { filter} = useSelector(state => state.filters);
     const filterContacts = useSelector(filterSelector);
 
     const dispatch = useDispatch();
@@ -14,11 +12,6 @@ export const Contacts = () => {
         dispatch(deleteContact(id));
       };
     
-    //   const getFilterContacts = () => {
-    //     return items.filter((el) => el.name.toLowerCase().includes(filter.toLowerCase()))
-    //   };
-    
-
     return ( 
         <>
             {filterContacts.map((el) => 

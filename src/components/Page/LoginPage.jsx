@@ -1,23 +1,13 @@
 import { loginThunk } from "components/redux/auth/operation";
-// import { selectToken } from "components/redux/auth/selector";
-// import { useEffect } from "react";
 import { useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Notiflix from 'notiflix';
-import { Form, FormButton, FormInput, FormLabel, LoginForm } from "components/stiled";
+import { Form, FormInput, FormLabel, LoginForm } from "components/stiled";
+import { Button } from "@mui/material";
 
 const LoginPage = () => {
   const navigate = useNavigate()
-  // const isAuth = useSelector(selectToken)
   const dispatch = useDispatch();
-  // console.log('1 ===> '+isAuth)
-  // useEffect(() => {
-  //   if (isAuth) {
-  //     navigate('/contacts')
-  //     // dispatch(getProfileThunk(isAuth))
-  //     Notiflix.Notify.success('Welcome Contacts book');
-  //   }
-  // }, [isAuth, navigate])
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -57,7 +47,8 @@ const LoginPage = () => {
               id='exampleInputPassword'
             />
           </FormLabel>
-          <FormButton type="submit">Login</FormButton>
+          <Button variant="contained" type="submit">Login</Button>
+          {/* <FormButton type="submit">Login</FormButton> */}
         </Form>
       </LoginForm>
     );

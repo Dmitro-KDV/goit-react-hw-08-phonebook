@@ -1,9 +1,14 @@
+import { loginThunk } from "components/redux/auth/operation";
 import { singUp } from "components/services";
-import { Form, FormButton, FormInput, FormLabel, LoginForm } from "components/stiled";
-import { useNavigate } from "react-router-dom";
+import { Form, FormInput, FormLabel, LoginForm } from "components/stiled";
+import { useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+import Notiflix from 'notiflix';
+import { Button } from "@mui/material";
 
 const RegisterPage = () => {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
+    const dispatch = useDispatch();
 
     const handleSubmit = evt => {
       evt.preventDefault();
@@ -13,22 +18,29 @@ const RegisterPage = () => {
         email: email.value,
         password: password.value,
       }
-      // dispatch(
-      //   loginThunk(newUser)
-      //   // Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-      // );
       singUp(newUser)
         .then(() => {
-          navigate('/login')
+          // navigate('/login')
+          dispatch(loginThunk({
+            email: email.value,
+            password: password.value,
+          }))
+          Notiflix.Notify.success('Welcome Contacts book')
         })
-        .catch((error) => console.log(error.message))
+        .catch((error) => {
+        if (error.response.data.keyValue) {
+          Notiflix.Notify.failure('This email is already registered')
+        } else if(error.response.data.errors) {
+          Notiflix.Notify.failure('Invalid password (more than 7 characters required)')
+        }
+        })
     };
   
     return (
       <LoginForm>
         <Form onSubmit={handleSubmit}>
         <FormLabel>
-            Login
+            Name
             <FormInput
               type="text"
               name="name"
@@ -51,7 +63,8 @@ const RegisterPage = () => {
               id='exampleInputPassword'
             />
           </FormLabel>
-          <FormButton type="submit">Registration</FormButton>
+          <Button variant="contained" type="submit">Registration</Button>
+          {/* <FormButton type="submit">Registration</FormButton> */}
         </Form>
       </LoginForm>
     );
